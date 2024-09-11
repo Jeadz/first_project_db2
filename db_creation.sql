@@ -8,7 +8,8 @@ CREATE TABLE IF NOT EXISTS products (
     state ENUM('available', 'out of stock') NOT NULL,
     date_added DATE NOT NULL,
     amount INT NOT NULL,
-    notes TEXT
+    notes TEXT,
+    state ENUM('Paid', 'To Paid') NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS suppliers (
