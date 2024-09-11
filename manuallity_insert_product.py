@@ -17,12 +17,19 @@ class ProductInsertManually:
         amount = st.number_input('Amount', min_value=0, value=0,step=1)
         state = st.selectbox('State',state_options)
         notes = st.text_area(label='Notes',placeholder='Write a note',height=150,max_chars=250)
+        submit = st.button("Submit")  
         
-        if not name or not availability or not date_added or not amount or not state :
-            st.error('All fields are requiered')
         
-        submit = st.button("Submit") 
         if submit:
+            
+            if not name or not availability or not date_added or not state :
+                st.error('All fields are requiered')
+                return
+            
+            if amount == 0 and name:
+                st.error(f'Set a quantity for the product: {name}')
+                return
+            
             conn = None
             try:
                 conn = Connection.get_conn()
